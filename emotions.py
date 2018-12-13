@@ -15,6 +15,14 @@ USE_WEBCAM = True # If false, loads video file source
 # parameters for loading data and images
 emotion_model_path = './models/emotion_model.hdf5'
 emotion_labels = get_labels('fer2013')
+emotion_labels[0] = "concentrate"
+emotion_labels[4] = 'concentrate'
+emotion_labels[6] = 'concentrate'
+emotion_labels[3] = 'not concentrate'
+emotion_labels[5] = 'not concentrate'
+emotion_labels[1] = 'not concentrate'
+emotion_labels[2] = 'concentrate'
+# print(emotion_labels)
 
 # hyper-parameters for bounding boxes shape
 frame_window = 10
@@ -78,16 +86,16 @@ while cap.isOpened(): # True:
         except:
             continue
 
-        if emotion_text == 'angry':
+        if emotion_text == 'concentrate':
             color = emotion_probability * np.asarray((255, 0, 0))
-        elif emotion_text == 'sad':
-            color = emotion_probability * np.asarray((0, 0, 255))
-        elif emotion_text == 'happy':
+        # elif emotion_text == 'sad':
+        #     color = emotion_probability * np.asarray((255, 0, 0))
+        elif emotion_text == 'not concentrate':
             color = emotion_probability * np.asarray((255, 255, 0))
-        elif emotion_text == 'surprise':
-            color = emotion_probability * np.asarray((0, 255, 255))
-        else:
-            color = emotion_probability * np.asarray((0, 255, 0))
+        # elif emotion_text == 'surprise':
+        #     color = emotion_probability * np.asarray((255, 255, 0))
+        # else:
+        #     color = emotion_probability * np.asarray((255, 0, 0))
 
         color = color.astype(int)
         color = color.tolist()

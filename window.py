@@ -27,6 +27,14 @@ def camera(object):
     # parameters for loading data and images
     emotion_model_path = './models/emotion_model.hdf5'
     emotion_labels = get_labels('fer2013')
+    # change labels
+    emotion_labels[0] = "concentrate"
+    emotion_labels[4] = 'concentrate'
+    emotion_labels[6] = 'concentrate'
+    emotion_labels[3] = 'not concentrate'
+    emotion_labels[5] = 'not concentrate'
+    emotion_labels[1] = 'not concentrate'
+    emotion_labels[2] = 'concentrate'
 
     # hyper-parameters for bounding boxes shape
     frame_window = 10
@@ -90,16 +98,16 @@ def camera(object):
             except:
                 continue
 
-            if emotion_text == 'angry':
+            if emotion_text == 'concentrate':
+                color = emotion_probability * np.asarray((242, 255, 48))
+            # elif emotion_text == 'sad':
+            #     color = emotion_probability * np.asarray((242, 255, 48))
+            elif emotion_text == 'not concentrate':
                 color = emotion_probability * np.asarray((255, 0, 0))
-            elif emotion_text == 'sad':
-                color = emotion_probability * np.asarray((0, 0, 255))
-            elif emotion_text == 'happy':
-                color = emotion_probability * np.asarray((255, 255, 0))
-            elif emotion_text == 'surprise':
-                color = emotion_probability * np.asarray((0, 255, 255))
+            # elif emotion_text == 'surprise':
+            #     color = emotion_probability * np.asarray((255, 0, 0))
             else:
-                color = emotion_probability * np.asarray((0, 255, 0))
+                color = emotion_probability * np.asarray((242, 255, 48))
 
             color = color.astype(int)
             color = color.tolist()
