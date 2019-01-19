@@ -7,3 +7,5 @@ else:
         print("a is even ")
     else:
         print("a is odd")
+
+print('hello new class')
